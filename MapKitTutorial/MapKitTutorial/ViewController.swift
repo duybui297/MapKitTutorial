@@ -17,6 +17,7 @@ struct Stadium {
 
 class ViewController: UIViewController {
 
+  let locationManager = CLLocationManager()
   @IBOutlet weak var mapView: MKMapView!
   
   let stadiums = [Stadium(name: "Emirates Stadium", lattitude: 51.5549, longtitude: -0.108436),
@@ -51,7 +52,8 @@ class ViewController: UIViewController {
     case .denied:
       break
     case .notDetermined:
-      break
+      locationManager.requestWhenInUseAuthorization()
+      mapView.showsUserLocation = true
     case .restricted: 
       break
     case .authorizedAlways:
